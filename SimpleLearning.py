@@ -19,3 +19,13 @@ for i in range(train_set_count):
 
 for i in range(20):
     print(train_input[i], train_output[i])
+# Training
+predictor = LinearRegression()
+predictor.fit(X=train_input, y=train_output)
+
+# Prognosing
+x_test = [[10, 20, 30]]
+outcome = predictor.predict(X=x_test)
+coefficient = predictor.coef_
+print('Outcime :    ', outcome)
+print('Coefficient: ', coefficient)
