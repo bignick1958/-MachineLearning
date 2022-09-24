@@ -1,4 +1,4 @@
-# y= x1 + 2*x2 +3*x3
+# y= x1 + 4*x2 +9*x3 + 16x4
 
 from random import randint
 from sklearn.linear_model import LinearRegression
@@ -13,8 +13,9 @@ for i in range(train_set_count):
     a = randint(0, train_set_limit)
     b = randint(0, train_set_limit)
     c = randint(0, train_set_limit)
-    op = a + (2 * b) + (3 * c)
-    train_input.append([a, b, c])
+    e = randint(0, train_set_limit)
+    op = a + (4 * b) + (9 * c) + (16*e)
+    train_input.append([a, b, c, e])
     train_output.append(op)
 
 for i in range(20):
@@ -24,7 +25,7 @@ predictor = LinearRegression()
 predictor.fit(X=train_input, y=train_output)
 
 # Prognosing
-x_test = [[10, 20, 30]]
+x_test = [[10, 40, 90, 160]]
 outcome = predictor.predict(X=x_test)
 coefficient = predictor.coef_
 print('Outcime :    ', outcome)
