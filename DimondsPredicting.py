@@ -23,14 +23,14 @@ for i in range(3):
     df[categorical_features[i]] = new
 
 # print(df.head(10).to_string())
-x=df[['carat', 'cut', 'color', 'clarity', 'depth', 'table', 'x', 'y', 'z']]
-y=df[['price']]
+x = df[['carat', 'cut', 'color', 'clarity', 'depth', 'table', 'x', 'y', 'z']]
+y = df[['price']]
 
 # dividing data for test and training packs
 X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=25, random_state=101)
 
 # training
-regr = RandomForestRegressor(n_estimators= 10, max_depth=10, random_state=101)
+regr = RandomForestRegressor(n_estimators=10, max_depth=10, random_state=101)
 regr.fit(X_train, y_train.values.ravel())
 
 # prognosing
@@ -41,3 +41,15 @@ result['price'] = y_test
 result['predictions'] = predictions.tolist()
 
 print(result.to_string())
+
+# axis-X determine
+x_axis = X_test.carat
+
+# plotting
+plt.scatter(x_axis, y_test, c='b', alfa=0.5, marker='.', label='Real')
+plt.scatter(x_axis, predictions, c='r', alpha=0.5, marker='.', label='Predictions')
+plt.xlabel('Carat')
+plt.ylabel('Price')
+plt.grid(color='#D3D3D3')
+plt.legend(loc='lower-right')
+plt.show()
